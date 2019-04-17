@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
+<body>
+<div class="header">
+<form method="POST" id="form2">
+<input type=hidden name=username id=username value=0>
+<input type=hidden name=password id=password value=0>
+</form>
+</div>
+<div class="content">
+<table style="max-width: 500px;" id="t01" align="center">               
+<script>	  
+	document.write('<tr>');
+	document.write('<th colspan="3" align="center">Jelszó változtatás');
+	document.write('</th>');
+	document.write('</tr>');
+	document.write('<tr>');	
+		//userName field
+		document.write('<td align="center">');
+		document.write('Felhasználónév :<br>');
+		document.write('<input type="text" size="20"  maxlength="20" placeholder="" ');
+		if(name==null){name="";}
+		document.write('id="userName" name="userName" value="'+name+'" ');
+		document.write('>');
+		document.write('</td>');
+		document.write('<td align="center">');
+			document.write('<table style="width:100%; padding:10;background-color: rgba(0, 0, 0, 0); "  align="center" >');
+				document.write('<tr style="background-color: rgba(0, 0, 0, 0);">');
+					document.write('<td align="center">');
+					document.write('Jelszó<br>Még egyszer');
+					document.write('</td>');
+					document.write('<td align="right">');
+					document.write(':<br>:');
+					document.write('</td>');
+					document.write('<td align="center">');
+					document.write('<input type="password" size="20"  maxlength="20" placeholder="" ');
+					document.write('id="pwd1" ');
+					document.write('value="" ');
+					document.write('><br>');
+					document.write('<input type="password" size="20"  maxlength="20" placeholder="" ');
+					document.write('id="pwd2" ');
+					document.write('value="" ');
+					document.write('><br>');
+					document.write('<button name="ok" value="ok" onclick="passChange(this)">Jóváhagy</button>');
+					document.write('</td>');
+				document.write('</tr>');
+			document.write('</table>');
+		document.write('</td>');
+	document.write('</tr>');
+</script>    
+</table>
+</div>
+</body>
+<script>
+
+  function passChange(obj){
+	  if (document.getElementById("pwd1").value == document.getElementById("pwd2").value){
+		  document.getElementById("username").name = document.getElementById('userName').name;
+		  document.getElementById("username").value = document.getElementById('userName').value;	
+		  var toEncrypt  = document.getElementById('userName').value +":"+ document.getElementById("pwd2").value;
+		  var encrypted = window.btoa(toEncrypt);	
+		  document.getElementById("password").name	=  "pwd" ;
+		  document.getElementById("password").value =  encrypted;
+		  document.getElementById("form2").submit();
+		  //alert("form2 sent");
+  	  }else alert("Password re-type not correct!");
+  }
+   
+</script>
+</html>

@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
+<body>
+<div class="header">
+<form method="POST" id="form">
+<input type=hidden name=X id=X value=0>
+<input type=hidden name=Y id=Y value=0>
+<input type=hidden name=sending id=sending value=0>
+</form>
+<form method="POST" id="form2">
+<input type=hidden name=X id=X value=0>
+<input type=hidden name=Y id=Y value=0>
+<input type=hidden name=username id=username value=0>
+<input type=hidden name=password id=password value=0>
+</form>
+<div class="content">
+<table id="t01" align="center" >
+<tr><td>
+<table align="center" >
+  <tr valign="top">  
+  <td><table id="t02" align="center">
+   <tr><th id="top" colspan="2">Wifi</th></tr> 
+    <tr><td>WiFi SSID</td><td><script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="WiFiSSID" value="'+_wifiSSID+'" onchange="changed(this)">');</script></td></tr>
+    <tr><td>Wifi password</td><td><script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="WiFiPass" value="'+_wifiPass+'" onchange="changed(this)">');</script></td></tr>
+    <tr><td>Wifi IP</td>
+      <td><script>
+		for(i=0;i<4;i++){
+			document.write('<input type="number" style="width: 3em" min="0" max="255" maxlength="3" name="_wifiIP*'+i+'" value="'+_wifiIP[i]+'" onchange="changed(this)">');
+			if(i<3){document.write(' . ');}
+		}
+      </script></td></tr>
+    <tr><td>Wifi Gateway</td>
+      <td><script>
+		for(i=0;i<4;i++){
+			document.write('<input type="number" style="width: 3em" min="0" max="255" maxlength="3" name="_wifiGateway*'+i+'" value="'+_wifiGateway[i]+'" onchange="changed(this)">');
+			if(i<3){document.write(' . ');}
+		}
+      </script></td></tr>
+    <tr><td>Wifi Subnet Mask</td>
+      <td><script>
+		for(i=0;i<4;i++){
+			document.write('<input type="number" style="width: 3em" min="0" max="255" maxlength="3" name="_wifiSubmask*'+i+'" value="'+_wifiSubmask[i]+'" onchange="changed(this)">');
+			if(i<3){document.write(' . ');}
+		}
+      </script></td></tr>
+       <tr><td>OTA disabled</td><td><script>document.write('<input type="checkbox" name="_OTAdisabled" value="'+_OTA_disabled+'" ');
+		if( _OTA_disabled == 1){document.write('checked ');}
+		document.write('onchange="changed(this)"></td>');
+      </script></td></tr> 
+   <tr><th id="top" colspan="2">AP</th></tr> 
+   <tr><td>Hidden AP SSID</td><td><script>document.write('<input type="checkbox" name="_hidden" value="'+_hidden+'" ');
+		if( _hidden == 1){document.write('checked ');}
+		document.write('onchange="changed(this)"></td>');
+      </script></td></tr>  
+    <tr><td>AP SSID</td><td><script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="APSSID" value="'+_apSSID+'" onchange="changed(this)">');</script></td></tr>
+    <tr><td>AP password</td><td><script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="APpass" value="'+_apPass+'" onchange="changed(this)">');</script></td></tr>
+    <tr><td>AP IP</td>
+      <td><script>
+		for(i=0;i<4;i++){
+			document.write('<input type="number" style="width: 3em" min="0" max="255" maxlength="3" name="_apIP*'+i+'" value="'+_apIP[i]+'" onchange="changed(this)">');
+			if(i<3){document.write(' . ');}
+		}
+     </script></td></tr>
+    <tr><td>AP channel</td><td><script>document.write('<input type="number" size="20" maxlength="20" placeholder="-" name="_apChannel" value="'+_apChannel+'" onchange="changed(this)">');</script></td></tr>
+   <tr><td bgcolor="#FFFFFF" colspan="2">&nbsp;</td></tr>
+   <tr><th id="top" colspan="2">Relay</th> </tr> 
+    <tr><td>Relay 1 IP/ID</td><td>
+	<script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="_relayIP_1" value="'+_relayIP_1+'" onchange="changed(this)">');
+			document.write('<input type="number" size="20" maxlength="20" placeholder="-" name="_relayID_1" value="'+_relayID_1+'" onchange="changed(this)">');</script>    
+    <button name="ON" value="1" onClick="changed(this)">ON</button>
+    <button name="OFF" value="1" onClick="changed(this)">OFF</button>
+    <button name="Pulse" value="1" onClick="changed(this)">Pulse</button>
+    </td></tr>
+    <tr><td>Relay 2 IP/ID</td><td>
+	<script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="_relayIP_2" value="'+_relayIP_2+'" onchange="changed(this)">');
+			document.write('<input type="number" size="20" maxlength="20" placeholder="-" name="_relayID_2" value="'+_relayID_2+'" onchange="changed(this)">');</script>    
+    <button name="ON" value="2" onClick="changed(this)">ON</button>
+    <button name="OFF" value="2" onClick="changed(this)">OFF</button>
+    <button name="Pulse" value="2" onClick="changed(this)">Pulse</button>
+    </td></tr>
+    <tr><td>Relay 3 IP/ID</td><td>
+	<script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="_relayIP_3" value="'+_relayIP_3+'" onchange="changed(this)">');
+			document.write('<input type="number" size="20" maxlength="20" placeholder="-" name="_relayID_3" value="'+_relayID_3+'" onchange="changed(this)">');</script>    
+    <button name="ON" value="3" onClick="changed(this)">ON</button>
+    <button name="OFF" value="3" onClick="changed(this)">OFF</button>
+    <button name="Pulse" value="3" onClick="changed(this)">Pulse</button>
+    </td></tr>
+    <tr><td>Relay 4 IP/ID</td><td>
+	<script>document.write('<input type="text" size="20" maxlength="20" placeholder="-" name="_relayIP_4" value="'+_relayIP_4+'" onchange="changed(this)">');
+			document.write('<input type="number" size="20" maxlength="20" placeholder="-" name="_relayID_4" value="'+_relayID_4+'" onchange="changed(this)">');</script>    
+    <button name="ON" value="4" onClick="changed(this)">ON</button>
+    <button name="OFF" value="4" onClick="changed(this)">OFF</button>
+    <button name="Pulse" value="4" onClick="changed(this)">Pulse</button>
+    </td></tr>
+   <tr><th id="top" colspan="2">IO-Valet</th> </tr>        
+   <script>
+	var _emptySpace =0;
+	for(i=0;i<12;i++){		
+		if(_IO_valet_IP[i]!='' || i==0){
+			document.write('<tr><td>IP/user/password   - ID : '+i+'<td><input type="text" size="40" maxlength="40" placeholder="-" name="ValetIP*'+i+'" value="'+_IO_valet_IP[i]+'" onchange="changed(this)">');
+			document.write(' <input type="text" size="20" maxlength="20" placeholder="-" id="ValetUser*'+i+'" name="ValetUser*'+i+'" value="'+_IO_valet_user[i]+'" onchange="">');
+			document.write(' <input type="password" size="20" maxlength="20" placeholder="-" id="pwd*'+i+'" name="ValetPass*'+i+'" value="'+_IO_valet_password[i]+'" onchange="">');	
+			document.write('<button name="ok" value="'+i+'" onclick="passChange(this)">Rögzítés</button></td></tr>');					
+		}else 
+		if(_IO_valet_IP[i]=='' && _emptySpace ==0 && _IO_valet_IP[0]!=''){
+			_emptySpace=1;	
+			document.write('<tr><td>IP/user/password   - ID : '+i+'<td><input type="text" size="40" maxlength="40" placeholder="-" name="ValetIP*'+i+'" value="'+_IO_valet_IP[i]+'" onchange="changed(this)">');
+			document.write(' <input type="text" size="20" maxlength="20" placeholder="-" id="ValetUser*'+i+'" name="ValetUser*'+i+'" value="'+_IO_valet_user[i]+'" onchange="">');
+			document.write(' <input type="password" size="20" maxlength="20" placeholder="-" id="pwd*'+i+'" name="ValetPass*'+i+'" value="'+_IO_valet_password[i]+'" onchange="">');
+			document.write('<button name="ok" value="'+i+'" onclick="passChange(this)">Rögzítés</button></td></tr>');
+		}						
+	}
+   </script>
+      <tr><th id="top" colspan="2">Input</th> </tr>        
+   <script>
+		for(i=0;i<4;i++){						
+				document.write('<tr><td>INPUT server/switch : '+i+'<td><input type="number" size="6" maxlength="6" placeholder="-" name="_inputServer*'+i+'" value="'+_input_server[i]+'" onchange="changed(this)">');
+				document.write(' <input type="number" size="6" maxlength="6" placeholder="-" name="_inputNumber*'+i+'" value="'+_input_number[i]+'" onchange="changed(this)"></td></tr>');						
+		}
+      </script>
+       <tr><th id="top" colspan="2"><button name="EEPROMFormat" value="1" onClick="changed(this)">Factory Defaults</button><button name="reset" value="1" onClick="changed(this)">Restart</button></th></tr> 	
+ </table></td>
+</tr></table>
+</div>
+</body>
+</html>
+<script>
+function sendForm(){
+  document.getElementById("Y").value = window.scrollY;
+  document.getElementById("X").value = window.scrollX;
+  document.getElementById("form").submit();
+}
+function changed(obj){
+  document.getElementById("sending").name = obj.name;
+  document.getElementById("sending").value = obj.value;
+  sendForm();
+}
+function passChange(obj){
+	  document.getElementById("username").name = document.getElementById('ValetUser*'+obj.value).name;
+	  document.getElementById("username").value = document.getElementById('ValetUser*'+obj.value).value;
+	  var toEncrypt  = document.getElementById('ValetUser*'+obj.value).value +":"+ document.getElementById("pwd*"+obj.value).value;
+	  var encrypted = window.btoa(toEncrypt);	
+	  document.getElementById("password").name	=  "ValetPass*"+obj.value ;
+	  document.getElementById("password").value =  encrypted;
+	  document.getElementById("form2").submit();
+}
+window.scrollTo(x,y);
+</script>
